@@ -14,15 +14,33 @@ public class Bot {
         webapp.goToTransfers();
         webapp.goToTransferMarket();
     }
-    public void Trade(int playerPrice)
+    public void Trade(int sellPrice,String playerName, String playerPrice)
     {
         while(true)
         {
-            buyPlayers();
-            sellPlayers(playerPrice);
+            buyPlayers(playerName,playerPrice);
+            sellPlayers(sellPrice);
         }
     } 
-    private void buyPlayers()
+    private void buyPlayers(String playerName, String playerPrice)
+    {
+       
+        webapp.enterPlayerName(playerName);
+        webapp.setMaxBuyPrice(playerPrice);
+        webapp.search();
+        if(webapp.noResult())
+        {
+            return;
+        }
+        if (webapp.buyPlayer())
+        {
+            System.out.println("Succesfully bought player");
+        }
+        else
+        {
+            System.out.println("Failed to buy player");
+        }
+    }
     {
         var playersAcquired= 0;
         var attempts= 0;
