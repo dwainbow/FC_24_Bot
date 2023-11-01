@@ -11,13 +11,15 @@ public class WebApp {
     }
 
     public int getCoins() {
-        String coins = driver.findElement(By.className("view-navbar-currency-coins")).getText().replace(",", "");
+        String coins = driver.findElement(By.className("view-navbar-currency-coins"))
+        .getText()
+        .replace(",", "");
         return Integer.parseInt(coins);
     }
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(1500);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
             System.out.println("Going to transfer Market...");
         
@@ -25,17 +27,11 @@ public class WebApp {
             System.out.println("Failed to go to transfer Market");
         }
     }
+    
 
     public void goToTransfers() {
-        try {
-            Thread.sleep(40000);
-            driver.findElement(By.className("ut-tab-bar-item icon-transfer")).click();
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-        driver.findElement(By.className("ut-tab-bar-item icon-transfer")).click();
-        // var button = new ClickButton("Transfers", driver);
-        // button.click("/html/body/main/section/nav/button[3]");
+        var button = new ClickButton("Transfers", driver);
+        button.click("/html/body/main/section/nav/button[3]");
     }
 
     public void setMaxBuyPrice(String playerPrice) {
@@ -57,17 +53,45 @@ public class WebApp {
 
     public boolean noResult() {
         try {
-            Thread.sleep(500);
-            driver.findElement(By.className("contents"));
-            goBackToTransfer();
-            Thread.sleep(500);
-
+            Thread.sleep(1500);
+            driver.findElement(By.className("ut-no-results-view"));
+            goBackToTransferMarket();
             return true;
         } catch (Exception e) {
             return false;
         }
     }
+    public void goHome()
+    {
+        var button = new ClickButton("Home", driver);
+        button.click("/html/body/main/section/nav/button[1]");
+    }
+    public void goToUnnasignedItems()
+    {
+        var button = new ClickButton("UnassignedItems", driver);
+        button.click("/html/body/main/section/section/div[2]/div/div/div[1]/div[1]");
+    }
+    public void pressListTransferMarket()
+    {
+        var button = new ClickButton("List on Transfer Button", driver);
+        button.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]");
 
+    }
+    public void setListingPrice(int maxPrice)
+    {  
+        driver
+        .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
+        .sendKeys(String.valueOf(maxPrice));
+
+        driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
+        .sendKeys(String.valueOf(maxPrice-100));
+    }
+    public void listOnTransfer()
+    {
+        var button = new ClickButton("List on Transfer", driver);
+        button.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/button");
+    }
+    
     public void reset(String playerName) {
         System.out.println("Error occurred, resetting");
         goToTransfers();
@@ -86,22 +110,16 @@ public class WebApp {
     }
 
     public void search() {
-        var button = new ClickButton("Search", driver);
-        button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[2]/button[2]");
+        driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div[2]/div/div[2]/button[2]")).click();
     }
 
-    public boolean buyPlayer() {
-        var buyPlayerButton = new ClickButton("Buy Player", driver);
-        buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
-        var confimPurchase = new ClickButton("Confirm Purchase", driver);
-        confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
-        goBackToTransfer();
-        return true;
-    }
 
-    public void goBackToTransfer() {
-        var button = new ClickButton("Go back to transfer market", driver);
-        button.click("/html/body/main/section/section/div[1]/button[1]");
+    public void goBackToTransferMarket() {
+        try {
+            driver.findElement(By.className("ut-navigation-button-control")).click();
+        } catch (Exception e) {
+            System.out.println("Failed to go back to transfer market");
+        }
     }
 
 }
