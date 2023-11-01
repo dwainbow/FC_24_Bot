@@ -1,5 +1,6 @@
-public class Bot
-{
+package fc_24_bot_java2;
+
+public class Bot {
     private LoginPage login;
     private WebApp webapp;
 
@@ -15,34 +16,17 @@ public class Bot
     }
     public void Trade(int playerPrice)
     {
-        var playersAcquired= 0;
-        var attempts= 0;
-        var initCoins = webapp.getCoins()
         while(true)
         {
-            buyPlayers()
-            sellPlayers(playerPrice)
+            buyPlayers();
+            sellPlayers(playerPrice);
         }
     } 
-    private boolean buyPlayerProcess() {
-        try {
-            var buyPlayerButton = new ClickButton("Buy Player", driver);
-            buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
-            System.out.println("Bought Player");
-            // var confimPurchase = new ClickButton("Confirm Purchase", driver);
-            // confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
-            Thread.sleep(3000);
-            goBackToTransferMarket();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
     private void buyPlayers()
     {
         var playersAcquired= 0;
         var attempts= 0;
-        var initCoins = webapp.getCoins()
+        var initCoins = webapp.getCoins();
         while(playersAcquired<5)
         {
             if(attempts > 15)
@@ -57,12 +41,13 @@ public class Bot
                 attempts++;
                 continue;
             }
-            if (buyPlayerProcess())
+            if (webapp.buyPlayer())
             {
                 if(webapp.getCoins()<initCoins)
                 {
                     System.out.println("Succesfully bought player");
                     initCoins = webapp.getCoins();
+                    playersAcquired++;
                 }
                 else
                 {
@@ -75,14 +60,13 @@ public class Bot
     }
     public void sellPlayers(int amount)
     {
-        goHome();
-        goToUnnasignedItems();
-        while(!noResult())
+        webapp.goHome();
+        webapp.goToUnnasignedItems();
+        while(!webapp.noResult())
         {
-            pressListTransferMarket();
-            setListingPrice(amount);
-            listOnTransfer();
+            webapp.pressListTransferMarket();
+            webapp.setListingPrice(amount);
+            webapp.listOnTransfer();
         }
     }
-
 }

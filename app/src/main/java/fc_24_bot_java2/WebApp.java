@@ -112,6 +112,20 @@ public class WebApp {
     public void search() {
         driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div[2]/div/div[2]/button[2]")).click();
     }
+    public boolean buyPlayer() {
+        try {
+            var buyPlayerButton = new ClickButton("Buy Player", driver);
+            buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
+            System.out.println("Bought Player");
+            // var confimPurchase = new ClickButton("Confirm Purchase", driver);
+            // confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
+            Thread.sleep(3000);
+            goBackToTransferMarket();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 
     public void goBackToTransferMarket() {

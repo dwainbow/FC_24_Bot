@@ -22,8 +22,8 @@ public class LoginPage {
 
     private void setDriver() {
         ChromeOptions options = new ChromeOptions();
-        // options.addArguments("--headless");
-        // options.addArguments("--disable-gpu");
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36";
         options.addArguments("user-agent=" + userAgent);
 
