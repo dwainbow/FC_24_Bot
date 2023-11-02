@@ -22,8 +22,8 @@ public class LoginPage {
 
     private void setDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--disable-gpu");
+        // options.addArguments("--headless");
+        // options.addArguments("--disable-gpu");
         String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36";
         options.addArguments("user-agent=" + userAgent);
 
@@ -68,7 +68,7 @@ public class LoginPage {
         sendCode.click();
 
         var twoFactorCode = driver.findElement(By.id("twoFactorCode"));
-        System.out.println("Enter 2FA code: ");
+        System.out.print("Enter 2FA code: ");
         Scanner code = new Scanner(System.in);
         twoFactorCode.sendKeys(code.nextLine());
 

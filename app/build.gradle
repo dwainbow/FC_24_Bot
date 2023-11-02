@@ -22,11 +22,11 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.14.1'
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '4.14.1'
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.14.1'
 
-
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.15.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '4.15.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.15.0'
+    
 }
 
 

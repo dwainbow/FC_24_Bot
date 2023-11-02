@@ -6,7 +6,10 @@ public class Bot {
 
     public Bot()
     {
-        this.login = new LoginPage("overthedwainbow@gmail.com", "Daniels2002");
+        login = new LoginPage("overthedwainbow@gmail.com", "Daniels2002");
+        login.login();
+        login.authenticate();
+        login.loginWebApp();
         this.webapp = new WebApp(login.getDriver());
     }
     public void goToTransferMarket()
@@ -14,7 +17,7 @@ public class Bot {
         webapp.goToTransfers();
         webapp.goToTransferMarket();
     }
-    public void Trade(int sellPrice,String playerName, String playerPrice)
+    public void Trade(String playerName, String playerPrice, int sellPrice)
     {
         while(true)
         {
@@ -22,26 +25,11 @@ public class Bot {
             sellPlayers(sellPrice);
         }
     } 
-    private void buyPlayers(String playerName, String playerPrice)
+    public void buyPlayers(String playerName, String playerPrice)
     {
        
         webapp.enterPlayerName(playerName);
         webapp.setMaxBuyPrice(playerPrice);
-        webapp.search();
-        if(webapp.noResult())
-        {
-            return;
-        }
-        if (webapp.buyPlayer())
-        {
-            System.out.println("Succesfully bought player");
-        }
-        else
-        {
-            System.out.println("Failed to buy player");
-        }
-    }
-    {
         var playersAcquired= 0;
         var attempts= 0;
         var initCoins = webapp.getCoins();
@@ -73,18 +61,23 @@ public class Bot {
                 }
                 attempts++;
             }
-
+            else
+            {
+                webapp.reset(playerName);
+            }
         }
+
+        
     }
     public void sellPlayers(int amount)
     {
-        webapp.goHome();
+        // webapp.goHome();
         webapp.goToUnnasignedItems();
         while(!webapp.noResult())
         {
             webapp.pressListTransferMarket();
             webapp.setListingPrice(amount);
-            webapp.listOnTransfer();
+            // webapp.listOnTransfer();
         }
     }
 }

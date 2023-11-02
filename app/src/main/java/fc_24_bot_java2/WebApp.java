@@ -2,6 +2,7 @@ package fc_24_bot_java2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
 
 public class WebApp {
     private final WebDriver driver;
@@ -53,7 +54,7 @@ public class WebApp {
 
     public boolean noResult() {
         try {
-            Thread.sleep(1500);
+            Thread.sleep(1000);
             driver.findElement(By.className("ut-no-results-view"));
             goBackToTransferMarket();
             return true;
@@ -79,12 +80,18 @@ public class WebApp {
     }
     public void setListingPrice(int maxPrice)
     {  
+        maxPrice = 500;
+        driver
+        .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
+        .sendKeys(Keys.DELETE);
         driver
         .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
         .sendKeys(String.valueOf(maxPrice));
 
         driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
-        .sendKeys(String.valueOf(maxPrice-100));
+        .clear();
+        driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
+        .sendKeys("N");
     }
     public void listOnTransfer()
     {
@@ -116,9 +123,8 @@ public class WebApp {
         try {
             var buyPlayerButton = new ClickButton("Buy Player", driver);
             buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
-            System.out.println("Bought Player");
-            // var confimPurchase = new ClickButton("Confirm Purchase", driver);
-            // confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
+            var confimPurchase = new ClickButton("Confirm Purchase", driver);
+            confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
             Thread.sleep(3000);
             goBackToTransferMarket();
             return true;
