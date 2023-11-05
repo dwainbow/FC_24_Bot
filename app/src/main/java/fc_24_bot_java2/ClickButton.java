@@ -17,7 +17,7 @@ public class ClickButton {
     }
     public boolean click(String xpath) {
         try {
-            int seconds = 40;
+            int seconds = 60;
             var wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
             button.click();

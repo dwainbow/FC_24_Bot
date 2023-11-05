@@ -20,7 +20,7 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(1500);
+            Thread.sleep(5000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
             System.out.println("Going to transfer Market...");
         
@@ -31,8 +31,14 @@ public class WebApp {
     
 
     public void goToTransfers() {
-        var button = new ClickButton("Transfers", driver);
-        button.click("/html/body/main/section/nav/button[3]");
+        try {
+            Thread.sleep(20000);
+            var button = new ClickButton("Transfers", driver);
+            button.click("/html/body/main/section/nav/button[3]");
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        
     }
 
     public void setMaxBuyPrice(String playerPrice) {
@@ -107,8 +113,14 @@ public class WebApp {
     }
 
     public void incrementMinBuyPrice() {
-        var button = new ClickButton("Increment Min Buy", driver);
-        button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[5]/div[2]/button[2]");
+        try {
+            Thread.sleep(500);
+            var button = new ClickButton("Increment Min Buy", driver);
+            button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[5]/div[2]/button[2]");
+        } catch (Exception e) {
+            
+        }
+        
     }
 
     public void resetMinBuyPrice() {
