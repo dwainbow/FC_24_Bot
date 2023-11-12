@@ -20,9 +20,7 @@ public class DatabaseDriver {
             throw new IllegalStateException("The connection is already opened");
         }
         connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFilename);
-        //the next line enables foreign key enforcement - do not delete/comment out
         connection.createStatement().execute("PRAGMA foreign_keys = ON");
-        //the next line disables auto-commit - do not delete/comment out
         connection.setAutoCommit(false);
     }
     public List<Player> getPlayersByName(String name)
