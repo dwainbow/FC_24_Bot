@@ -57,7 +57,11 @@ class PopulateDatabase:
         """
         cursor.execute(insert_query, player_values)
         self.connection.commit()
-
+    
+    def clear_table(self):
+        cursor = self.connection.cursor()
+        cursor.execute("DELETE FROM PLAYERS")
+        self.connection.commit()
     
 
 
@@ -145,10 +149,11 @@ def scrapeData():
 
     populate_database = PopulateDatabase("fc24.db")
     populate_database.connect()
+    populate_database.clear_table()
     populate_database.create_tables()
 
     player_data=[]
-    versions = ["pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
+    versions = ["icons", "centurions_icon", "centurions", " klpundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
                 "fut_heroes", "gold_rare", "gold_nr",  "silver_rare", "silver_nr",
                 "bronze_rare", "bronze_nr", "if_gold", "if_silver", "if_bronze", "icons", "libertadores_b", "sudamericana"] 
     
@@ -176,9 +181,11 @@ def scrapeData():
                     league = getPlayerLeague(tds)
                     nation=getPlayerNation(tds)
                     
-
+                    
                     data = [player_name,version,club,league,nation,player_positon, player_other_positions, player_price]
+                    
                     populate_database.insert_player_data(data)
+                    
 
                     # player_data.append([player_name,version,club,league,nation,player_positon, player_other_positions, player_price])
         # saveToCSV(player_data)
