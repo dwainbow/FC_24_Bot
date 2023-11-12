@@ -36,7 +36,7 @@ public class WebApp {
             var button = new ClickButton("Transfers", driver);
             button.click("/html/body/main/section/nav/button[3]");
         } catch (Exception e) {
-            // TODO: handle exception
+            
         }
         
     }
