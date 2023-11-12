@@ -9,7 +9,7 @@ public class App {
         var dataBaseDriver = new DatabaseDriver("fc24.db");
         try {
             dataBaseDriver.connect();
-            var players = dataBaseDriver.getPlayersByName("De Paul");
+            var players = dataBaseDriver.getPlayersByName("Calvin");
             System.out.println(players);
         } catch (Exception e) {
             System.out.println("Failed to connect to database");

@@ -1,69 +1,7 @@
 import requests
 import csv
 from bs4 import BeautifulSoup
-import sqlite3
-
-
-import sqlite3
-
-class PopulateDatabase:
-    def __init__(self, sqlite_filename):
-        self.sqlite_filename = sqlite_filename
-        self.connection = None
-
-    def connect(self):
-        if self.connection is not None and not self.connection.closed:
-            raise RuntimeError("The connection is already opened")
-        self.connection = sqlite3.connect(self.sqlite_filename)
-        self.connection.execute("PRAGMA foreign_keys = ON")
-        self.connection.isolation_level = None  
-
-    def commit(self):
-        self.connection.commit()
-
-    def rollback(self):
-        self.connection.rollback()
-
-    def disconnect(self):
-        self.connection.close()
-
-    def create_tables(self):
-        cursor = self.connection.cursor()
-
-        players_sql = """
-            CREATE TABLE IF NOT EXISTS PLAYERS (
-                ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                Name TEXT NOT NULL,
-                Version TEXT NOT NULL,
-                Club TEXT NOT NULL,
-                League TEXT NOT NULL,
-                Nation TEXT NOT NULL,
-                Position TEXT NOT NULL,
-                OtherPositions TEXT NOT NULL,
-                Price REAL NOT NULL
-            )
-        """
-
-        cursor.execute(players_sql)
-        self.connection.commit()
-    def insert_player_data(self,player_data):
-        
-        cursor = self.connection.cursor()
-        player_values = (None,player_data[0], player_data[1], player_data[2], player_data[3], player_data[4], player_data[5], player_data[6],player_data[7])
-        
-        insert_query = """
-            INSERT INTO PLAYERS (ID, Name, Version, Club, League, Nation, Position, OtherPositions,Price)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """
-        cursor.execute(insert_query, player_values)
-        self.connection.commit()
-    
-    def clear_table(self):
-        cursor = self.connection.cursor()
-        cursor.execute("DELETE FROM PLAYERS")
-        self.connection.commit()
-    
-
+from populateDatabase import PopulateDatabase
 
 def initSoup(url):
     headers = {
@@ -152,7 +90,6 @@ def scrapeData():
     populate_database.clear_table()
     populate_database.create_tables()
 
-    player_data=[]
     versions = ["icons", "centurions_icon", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
                 "fut_heroes", "gold_rare", "gold_nr",  "silver_rare", "silver_nr",
                 "bronze_rare", "bronze_nr", "if_gold", "if_silver", "if_bronze", "icons", "libertadores_b", "sudamericana"] 
@@ -181,9 +118,7 @@ def scrapeData():
                     league = getPlayerLeague(tds)
                     nation=getPlayerNation(tds)
                     
-                    
                     data = [player_name,version,club,league,nation,player_positon, player_other_positions, player_price]
-                    
                     populate_database.insert_player_data(data)
                     
 

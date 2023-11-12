@@ -110,7 +110,6 @@ public class DatabaseDriver {
 
                 var temp = new Player(playerName, version, position, nation, club1, price);
                 returnedPlayers.add(temp);
-                return returnedPlayers;
             }
             return returnedPlayers;
 
