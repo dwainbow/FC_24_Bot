@@ -122,7 +122,7 @@ public class WebApp {
         }
         
     }
-
+    
     public void resetMinBuyPrice() {
         String xpath = "/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[5]/div[2]/input";
         driver.findElement(By.xpath(xpath)).clear();
@@ -135,8 +135,8 @@ public class WebApp {
         try {
             var buyPlayerButton = new ClickButton("Buy Player", driver);
             buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
-            var confimPurchase = new ClickButton("Confirm Purchase", driver);
-            confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
+            // var confimPurchase = new ClickButton("Confirm Purchase", driver);
+            // confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
             Thread.sleep(3000);
             goBackToTransferMarket();
             return true;

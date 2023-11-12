@@ -153,7 +153,7 @@ def scrapeData():
     populate_database.create_tables()
 
     player_data=[]
-    versions = ["icons", "centurions_icon", "centurions", " klpundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
+    versions = ["icons", "centurions_icon", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
                 "fut_heroes", "gold_rare", "gold_nr",  "silver_rare", "silver_nr",
                 "bronze_rare", "bronze_nr", "if_gold", "if_silver", "if_bronze", "icons", "libertadores_b", "sudamericana"] 
     

@@ -41,8 +41,8 @@ public class DatabaseDriver {
 
                 var temp = new Player(playerName, version, position, nation, club, price);
                 returnedPlayers.add(temp);
-                return returnedPlayers;
             }
+            return returnedPlayers;
         } catch (SQLException e) {
         }
         return null;
@@ -64,8 +64,9 @@ public class DatabaseDriver {
 
                 var temp = new Player(playerName, version, position1, nation, club, price);
                 returnedPlayers.add(temp);
-                return returnedPlayers;
+                
             }
+            return returnedPlayers;
         } catch (Exception e) {
         }
         return null;
@@ -87,8 +88,9 @@ public class DatabaseDriver {
 
                 var temp = new Player(playerName, version, position, nation1, club, price);
                 returnedPlayers.add(temp);
-                return returnedPlayers;
             }
+            return returnedPlayers;
+
         } catch (Exception e) {
         }
         return null;
@@ -112,6 +114,8 @@ public class DatabaseDriver {
                 returnedPlayers.add(temp);
                 return returnedPlayers;
             }
+            return returnedPlayers;
+
         } catch (Exception e) {
         }
         return null;
@@ -133,8 +137,9 @@ public class DatabaseDriver {
 
                 var temp = new Player(playerName, version1, position, nation, club, price);
                 returnedPlayers.add(temp);
-                return returnedPlayers;
+                
             }
+            return returnedPlayers;
         } catch (Exception e) {
         }
         return null;
