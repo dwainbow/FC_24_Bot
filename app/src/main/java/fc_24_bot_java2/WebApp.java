@@ -90,14 +90,14 @@ public class WebApp {
         driver
         .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
         .sendKeys(Keys.DELETE);
-        driver
-        .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
-        .sendKeys(String.valueOf(maxPrice));
+        // driver
+        // .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
+        // .sendKeys(String.valueOf(maxPrice));
 
         driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
         .clear();
-        driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
-        .sendKeys("N");
+        // driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
+        // .sendKeys("1000");
     }
     public void listOnTransfer()
     {
@@ -135,9 +135,11 @@ public class WebApp {
         try {
             var buyPlayerButton = new ClickButton("Buy Player", driver);
             buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
-            // var confimPurchase = new ClickButton("Confirm Purchase", driver);
-            // confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
-            Thread.sleep(3000);
+            // var cancelBuyButton = new ClickButton("Cancel Buy", driver);
+            // cancelBuyButton.click("/html/body/div[4]/section/div/div/button[2]");
+            var confimPurchase = new ClickButton("Confirm Purchase", driver);
+            confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
+            Thread.sleep(2000);
             goBackToTransferMarket();
             return true;
         } catch (Exception e) {

@@ -1,5 +1,4 @@
 package fc_24_bot_java2;
-import java.util.List;
 
 public class Player {
     private String name;
@@ -53,8 +52,5 @@ public class Player {
                 ", price=" + price +
                 '}';
     }
-
-
-
 
 }
