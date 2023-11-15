@@ -53,7 +53,9 @@ def saveToCSV(player_data):
             writer.writerow(data)
 
 
-
+def getRating(tds):
+    rating = tds[2].find("span")
+    return rating.text
 
 def getPlayerName(tds):
     player_name_tag = tds[1].find("a", class_="player_name_players_table get-tp")
@@ -87,8 +89,9 @@ def scrapeData():
 
     populate_database = PopulateDatabase("fc24.db")
     populate_database.connect()
-    populate_database.clear_table()
+    # populate_database.clear_table()
     populate_database.create_tables()
+    
 
     versions = ["icons", "centurions_icon", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
                 "fut_heroes", "gold_rare", "gold_nr",  "silver_rare", "silver_nr",
@@ -109,8 +112,8 @@ def scrapeData():
                 players = soup.findAll('tr','player_tr_'+str(num))
                 for player in players:
                     tds = player.findAll('td')
-
                     player_name = getPlayerName(tds)
+                    rating = getRating(tds)
                     player_price=  getPlayerPrice(tds)
                     player_positon = getPlayerPostion(tds)
                     player_other_positions = getPlayerOtherPostions(tds) 
@@ -118,7 +121,7 @@ def scrapeData():
                     league = getPlayerLeague(tds)
                     nation=getPlayerNation(tds)
                     
-                    data = [player_name,version,club,league,nation,player_positon, player_other_positions, player_price]
+                    data = [player_name,rating,version,club,league,nation,player_positon, player_other_positions, player_price]
                     populate_database.insert_player_data(data)
                     
 

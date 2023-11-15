@@ -80,10 +80,16 @@ public class LoginPage {
     }
     public void loginWebApp()
     {
-        System.out.println("Logging in to web app...");
-        var button = new ClickButton("loginWebApp", driver);
-        button.click("/html/body/main/div/div/div/button[1]");
-        System.out.println("Successfully logged in to web app");
+        try {
+            Thread.sleep(30000);
+            System.out.println("Logging in to web app...");
+            var button = new ClickButton("loginWebApp", driver);
+            button.click("/html/body/main/div/div/div/button[1]");
+            System.out.println("Successfully logged in to web app");
+        } catch (Exception e) {
+            System.out.println("Error logging in to web app");
+        }
+        
 
     }
 

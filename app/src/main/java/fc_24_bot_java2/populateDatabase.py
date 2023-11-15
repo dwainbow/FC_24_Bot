@@ -28,6 +28,7 @@ class PopulateDatabase:
             CREATE TABLE IF NOT EXISTS PLAYERS (
                 ID INTEGER PRIMARY KEY AUTOINCREMENT,
                 Name TEXT NOT NULL,
+                Rating INTEGER NOT NULL,
                 Version TEXT NOT NULL,
                 Club TEXT NOT NULL,
                 League TEXT NOT NULL,
@@ -43,11 +44,11 @@ class PopulateDatabase:
     def insert_player_data(self,player_data):
         
         cursor = self.connection.cursor()
-        player_values = (None,player_data[0], player_data[1], player_data[2], player_data[3], player_data[4], player_data[5], player_data[6],player_data[7])
+        player_values = (None,player_data[0], player_data[1], player_data[2], player_data[3], player_data[4], player_data[5], player_data[6],player_data[7],player_data[8])
         
         insert_query = """
-            INSERT INTO PLAYERS (ID, Name, Version, Club, League, Nation, Position, OtherPositions,Price)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO PLAYERS (ID, Name,Rating,Version, Club, League, Nation, Position, OtherPositions,Price)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)
         """
         cursor.execute(insert_query, player_values)
         self.connection.commit()

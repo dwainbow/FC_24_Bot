@@ -7,14 +7,16 @@ public class Player {
     private String club;
     private double price;
     private String nation;
+    private int rating;
 
-    public Player(String name, String version, String position, String nation,  String club, double price) {
+    public Player(String name, String version, String position, String nation,  String club, double price,int rating) {
         this.name = name;
         this.version = version;
         this.position = position;
         this.club = club;
         this.price = price;
         this.nation= nation;
+        this.rating = rating;
     }
 
     public String getName() {
@@ -42,10 +44,16 @@ public class Player {
         return nation;
     }
 
+    public int getRating()
+    {
+        return rating;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
+                "rating = " + rating + '\n' + 
                 ", version='" + version + '\'' +
                 ", position='" + position + '\'' +
                 ", club='" + club + '\'' +

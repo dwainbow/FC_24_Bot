@@ -17,66 +17,73 @@ public class Bot {
         webapp.goToTransfers();
         webapp.goToTransferMarket();
     }
-    public void Trade(String playerName, String playerPrice, int sellPrice)
+    public void Trade(Player player)
     {
         while(true)
         {
-            buyPlayers(playerName,playerPrice);
-            sellPlayers(sellPrice);
+            buyPlayers(player);
+            // sellPlayers(player);
         }
     } 
-    public void buyPlayers(String playerName, String playerPrice)
+    public void buyPlayers(Player player)
     {
        
-        webapp.enterPlayerName(playerName);
-        webapp.setMaxBuyPrice(playerPrice);
+        webapp.enterPlayerName(player.getName());
+        webapp.setMaxBuyPrice(Double.toString(player.getPrice()*0.75));
         var playersAcquired= 0;
         var attempts= 0;
         var initCoins = webapp.getCoins();
-        while(playersAcquired<5)
+        if(initCoins< player.getPrice()*0.75)
         {
-            if(attempts > 15)
+            System.out.println("Not enough coins");
+            return;
+        }
+        System.out.println("Searching...");
+        while(playersAcquired<5 && initCoins>=player.getPrice()*0.75)
+        {
+            if(attempts > 5)
             {
                 webapp.resetMinBuyPrice();
                 attempts= 0 ;
             }
             webapp.incrementMinBuyPrice();
             webapp.search();
-            if(webapp.noResult())
-            {
-                attempts++;
-                continue;
-            }
             if (webapp.buyPlayer())
             {
                 if(webapp.getCoins()<initCoins)
                 {
-                    System.out.println("Succesfully bought player");
+                    System.out.println("Succesfully bought player for" + player.getPrice()*0.75 + "coins");
                     initCoins = webapp.getCoins();
                     playersAcquired++;
+                    if(initCoins< player.getPrice()*0.75)
+                    {
+                        System.out.println("Not enough coins to continue Trading");
+                        return;
+                    }
                 }
                 else
                 {
-                    System.out.println("Failed to buy player");
+                    System.out.println("Unsuccesfully bought player");
                 }
-                attempts++;
+                
             }
             else
             {
-                webapp.reset(playerName);
+                webapp.goBackToTransferMarket();
             }
+            attempts++;
         }
 
         
     }
-    public void sellPlayers(int amount)
+    public void sellPlayers(Player player)
     {
         // webapp.goHome();
         webapp.goToUnnasignedItems();
         while(!webapp.noResult())
         {
             webapp.pressListTransferMarket();
-            webapp.setListingPrice(amount);
+            webapp.setListingPrice((int) player.getPrice());
             // webapp.listOnTransfer();
         }
     }

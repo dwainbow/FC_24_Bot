@@ -22,10 +22,8 @@ public class WebApp {
         try {
             Thread.sleep(5000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
-            System.out.println("Going to transfer Market...");
         
         } catch (Exception e) {
-            System.out.println("Failed to go to transfer Market");
         }
     }
     
@@ -135,10 +133,10 @@ public class WebApp {
         try {
             var buyPlayerButton = new ClickButton("Buy Player", driver);
             buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
-            // var cancelBuyButton = new ClickButton("Cancel Buy", driver);
-            // cancelBuyButton.click("/html/body/div[4]/section/div/div/button[2]");
-            var confimPurchase = new ClickButton("Confirm Purchase", driver);
-            confimPurchase.click("/html/body/div[4]/section/div/div/button[1]/span[1]");
+            var elements = driver.findElements(By.className("btn-text"));
+            elements.get(2).click();
+
+
             Thread.sleep(2000);
             goBackToTransferMarket();
             return true;

@@ -17,13 +17,12 @@ public class ClickButton {
     }
     public boolean click(String xpath) {
         try {
-            int seconds = 60;
+            int seconds = 1;
             var wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
             WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
             button.click();
             return true;
         } catch (Exception e) {
-            System.out.println("Error clicking " + buttonName);
             return false;
         }
     }
