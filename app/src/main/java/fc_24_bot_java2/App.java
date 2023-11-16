@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         var dataBaseDriver = new DatabaseDriver("fc24.db");
+        
         try {
             dataBaseDriver.connect();
             Player playerBuy;
@@ -21,9 +22,9 @@ public class App {
             } else {
                 playerBuy = players.get(0);
             }
-            // var bot = new Bot();
-            // bot.goToTransferMarket();
-            // bot.buyPlayers(playerBuy);
+            var bot = new Bot();
+            bot.goToTransferMarket();
+            bot.buyPlayers(playerBuy);
             
         } catch (Exception e) {
             System.out.println(e.getMessage());

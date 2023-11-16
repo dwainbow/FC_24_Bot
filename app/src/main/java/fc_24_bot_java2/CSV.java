@@ -11,20 +11,20 @@ public class CSV {
     private static final String CSV_FILE_PATH = "BotData.csv";
 
     private List<String> headers;
-    private List<List<Integer>> rows;
+    private List<List<String>> rows;
 
     public CSV() {
-        this.headers = new ArrayList<>(List.of("Successes", "Failures", "Error"));
+        this.headers = new ArrayList<>(List.of("Successes", "Failures"));
         this.rows = new ArrayList<>();
     }
 
-    public void addRow(Integer... values) {
+    public void addRow(String... values) {
         this.rows.add(Arrays.asList(values));
     }
 
-    public void updateRow(int rowIndex, int ... newValues) {
+    public void updateRow(int rowIndex, String ... newValues) {
         if (rowIndex >= 0 && rowIndex < rows.size()) {
-            List<Integer> row = rows.get(rowIndex);
+            List<String> row = rows.get(rowIndex);
             for (int i = 0; i < Math.min(row.size(), newValues.length); i++) {
                 row.set(i, newValues[i]);
             }
@@ -38,11 +38,10 @@ public class CSV {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSV_FILE_PATH))) {
             writeRow(writer, headers);
 
-            for (List<Integer> row : rows) {
-                writeRowValues(writer, row);
+            for (List<String> row : rows) {
+                writeRow(writer, row);
             }
 
-            System.out.println("CSV file updated successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,13 +49,6 @@ public class CSV {
 
     private void writeRow(BufferedWriter writer, List<String> row) throws IOException {
         for (String value : row) {
-            writer.write(value);
-            writer.write(",");
-        }
-        writer.newLine();
-    }
-     private void writeRowValues(BufferedWriter writer, List<Integer> row) throws IOException {
-        for (Integer value : row) {
             writer.write(value);
             writer.write(",");
         }
