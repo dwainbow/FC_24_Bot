@@ -9,7 +9,7 @@ public class App {
         try {
             dataBaseDriver.connect();
             Player playerBuy;
-            var players = dataBaseDriver.getPlayersByName("Ferland Mendy");
+            var players = dataBaseDriver.getPlayersByPrice(40000,30000);
             if (players.size() >1 ) {
                 System.out.println("There is more than one version, which one do you want to trade?");
                 for (int i = 0; i < players.size(); i++) {

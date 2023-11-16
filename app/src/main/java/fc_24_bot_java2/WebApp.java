@@ -1,5 +1,6 @@
 package fc_24_bot_java2;
 
+import org.checkerframework.checker.units.qual.s;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Keys;
@@ -66,6 +67,29 @@ public class WebApp {
             return false;
         }
     }
+    public void setFilters(Player player)
+    {
+        var name =player.getName();
+        // var version = player.getVersion();
+        enterPlayerName(name);
+        setRarity();
+        var elements =driver.findElements(By.className("with-icon"));
+        for (int i = 0; i < elements.size(); i++) {
+            if(elements.get(i).getText().equals("Team of the Week"))
+            {
+                elements.get(i).click();
+                break;
+            }
+        }
+        setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
+
+    }
+    public void setRarity()
+    {
+        var button = new ClickButton("Rarity", driver);
+        button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[1]/div[3]/div/div/span");
+
+    }
     public void goHome()
     {
         var button = new ClickButton("Home", driver);
@@ -119,13 +143,6 @@ public class WebApp {
             
         }
         
-    }
-
-    public void setFilters(Player player)
-    {
-        var club = player.getClub();
-        var version = player.getVersion();
-
     }
     
     public void resetMinBuyPrice() {

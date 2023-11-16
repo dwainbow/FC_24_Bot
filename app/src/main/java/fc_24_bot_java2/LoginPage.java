@@ -22,8 +22,8 @@ public class LoginPage {
     private void setDriver() {
         FirefoxOptions options = new FirefoxOptions();
         
-        options.addArguments("--headless");
-        options.addArguments("--disable-gpu");
+        // options.addArguments("--headless");
+        // options.addArguments("--disable-gpu");
         this.driver= new FirefoxDriver(options);
 
         this.driver.get("https://signin.ea.com/p/juno/login?execution=e1540455597s1&initref=https%3A%2F%2Faccounts.ea.com%3A443%2Fconnect%2Fauth%3Fhide_create%3Dtrue%26display%3Dweb2%252Flogin%26scope%3Dbasic.identity%2Boffline%2Bsignin%2Bbasic.entitlement%2Bbasic.persona%26release_type%3Dprod%26response_type%3Dtoken%26redirect_uri%3Dhttps%253A%252F%252Fwww.ea.com%252Fea-sports-fc%252Fultimate-team%252Fweb-app%252Fauth.html%26accessToken%3D%26locale%3Den_US%26prompt%3Dlogin%26client_id%3DFC24_JS_WEB_APP");

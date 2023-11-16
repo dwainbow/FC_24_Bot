@@ -33,8 +33,7 @@ public class Bot {
         csv.addRow("0", "0");
         csv.writeToFile();
         
-        webapp.enterPlayerName(player.getName());
-        webapp.setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
+        webapp.setFilters(player);
         var playersAcquired= 0;
         var attempts= 0;
         var initCoins = webapp.getCoins();
