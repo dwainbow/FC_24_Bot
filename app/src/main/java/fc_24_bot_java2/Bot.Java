@@ -29,17 +29,17 @@ public class Bot {
     {
        
         webapp.enterPlayerName(player.getName());
-        webapp.setMaxBuyPrice(Double.toString(player.getPrice()*0.75));
+        webapp.setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
         var playersAcquired= 0;
         var attempts= 0;
         var initCoins = webapp.getCoins();
-        if(initCoins< player.getPrice()*0.75)
+        if(initCoins< player.getPrice()*0.85)
         {
-            System.out.println("Not enough coins");
+            System.out.println("Not enough coins to buy player");
             return;
         }
         System.out.println("Searching...");
-        while(playersAcquired<5 && initCoins>=player.getPrice()*0.75)
+        while(playersAcquired<5 && initCoins>=player.getPrice()*0.85)
         {
             if(attempts > 5)
             {
@@ -52,10 +52,10 @@ public class Bot {
             {
                 if(webapp.getCoins()<initCoins)
                 {
-                    System.out.println("Succesfully bought player for" + player.getPrice()*0.75 + "coins");
+                    System.out.println("Succesfully bought player");
                     initCoins = webapp.getCoins();
                     playersAcquired++;
-                    if(initCoins< player.getPrice()*0.75)
+                    if(initCoins< player.getPrice()*0.85)
                     {
                         System.out.println("Not enough coins to continue Trading");
                         return;

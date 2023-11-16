@@ -1,4 +1,20 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3300,
+            "driver": "MySQL",
+            "name": "FC24Databasse",
+            "database": "players",
+            "username": "admin",
+            "password": ""
+        }
+    ]
 }

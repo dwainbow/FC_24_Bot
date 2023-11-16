@@ -112,13 +112,20 @@ public class WebApp {
 
     public void incrementMinBuyPrice() {
         try {
-            Thread.sleep(500);
+            // Thread.sleep(500);
             var button = new ClickButton("Increment Min Buy", driver);
             button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[5]/div[2]/button[2]");
         } catch (Exception e) {
             
         }
         
+    }
+
+    public void setFilters(Player player)
+    {
+        var club = player.getClub();
+        var version = player.getVersion();
+
     }
     
     public void resetMinBuyPrice() {

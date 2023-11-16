@@ -51,13 +51,13 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                "rating = " + rating + '\n' + 
-                ", version='" + version + '\'' +
-                ", position='" + position + '\'' +
-                ", club='" + club + '\'' +
-                ", price=" + price +
+        return "{" +
+                "Name: '" + name +  
+                ", rating: " + rating + 
+                ", version: '" + version + 
+                ", position: '" + position + 
+                ", club: '" + club + 
+                ", price: " + price +
                 '}';
     }
 

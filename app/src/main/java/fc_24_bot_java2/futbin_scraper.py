@@ -89,8 +89,8 @@ def scrapeData():
 
     populate_database = PopulateDatabase("fc24.db")
     populate_database.connect()
-    # populate_database.clear_table()
-    populate_database.create_tables()
+    populate_database.clear_table()
+    # populate_database.create_tables()
     
 
     versions = ["icons", "centurions_icon", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 

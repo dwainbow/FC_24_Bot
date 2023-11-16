@@ -81,7 +81,7 @@ public class LoginPage {
     public void loginWebApp()
     {
         try {
-            Thread.sleep(30000);
+            Thread.sleep(10000);
             System.out.println("Logging in to web app...");
             var button = new ClickButton("loginWebApp", driver);
             button.click("/html/body/main/div/div/div/button[1]");
