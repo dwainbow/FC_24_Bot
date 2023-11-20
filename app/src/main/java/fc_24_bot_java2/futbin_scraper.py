@@ -7,7 +7,13 @@ def initSoup(url):
     headers = {
         'User-Agent': 'Mozilla/5.0'}
     req = requests.Session()
-    response = req.get(url, headers=headers)
+    
+    try:
+        response = req.get(url, headers=headers)
+    except:
+        print("Failed to connect to Internet")
+        return
+
     soup = BeautifulSoup(response.text, 'html.parser')
     return soup
 
@@ -43,15 +49,6 @@ def noResults(url):
             return True
         else:
             return False
-        
-def saveToCSV(player_data):
-    with open('futbin_data.csv','w', newline='') as file:
-        writer = csv.writer(file)
-        headers = ['Player Name', 'Version', 'Club', 'League', 'Nation', 'Position', 'Other Positions', 'Price']
-        writer.writerow(headers)
-        for data in player_data:
-            writer.writerow(data)
-
 
 def getRating(tds):
     rating = tds[2].find("span")
@@ -85,6 +82,34 @@ def getPlayerLeague(tds):
     player_clubs_nations  = tds[1].find("span", class_="players_club_nation").findAll("a")
     return player_clubs_nations[2]["data-original-title"]
 
+def convertVersion(version):
+    versionsMap = {
+        "icons": "Icon",
+        "centurions_icon": "Centurions ICON",
+        "centurions_icon": "Centurions",
+        "triple_threat_hero": "Triple Threat Heroes",
+        "triple_threat": "Triple Threat",
+        "trailblazers": "Trailblazers",
+        "uefea_heroes_men": "UEFA Heroes (Mens)",
+        "uefea_heroes_women": "UEFA Heroes (Womens)",
+        "nike":"Nike",
+        "fut_heroes": "UT Heroes",
+        "gold_rare": "Gold Rare",
+        "gold_nr": "Gold Common",
+        "silver_rare": "Silver Rare",
+        "silver_nr": "Silver Common",
+        "bronze_rare": "Bronze Rare",
+        "bronze_nr": "Bronze Common",
+        "if_gold":"Gold Team of the Week",
+        "if_silver":"Silver Team of the Week",
+        "if_bronze":"Bronze Team of the Week",
+        "libertadores_b": "CONMEBOL Libertadores",
+        "sudamericana": "CONMEBOL Sudamericana",
+    }
+    if version not in versionsMap:
+        return version
+    return versionsMap[version]
+
 def scrapeData():
 
     populate_database = PopulateDatabase("fc24.db")
@@ -93,9 +118,9 @@ def scrapeData():
     # populate_database.create_tables()
     
 
-    versions = ["icons", "centurions_icon", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
-                "fut_heroes", "gold_rare", "gold_nr",  "silver_rare", "silver_nr",
-                "bronze_rare", "bronze_nr", "if_gold", "if_silver", "if_bronze", "icons", "libertadores_b", "sudamericana"] 
+    versions = ["icons", "centurions_icon", "if_gold", "if_silver", "if_bronze",  "gold_rare", "gold_nr","centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
+                "fut_heroes",  "silver_rare", "silver_nr",
+                "bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana"] 
     
     for version in versions:
         page_number= 0
@@ -121,11 +146,8 @@ def scrapeData():
                     league = getPlayerLeague(tds)
                     nation=getPlayerNation(tds)
                     
-                    data = [player_name,rating,version,club,league,nation,player_positon, player_other_positions, player_price]
+                    data = [player_name,rating,convertVersion(version),club,league,nation,player_positon, player_other_positions, player_price]
                     populate_database.insert_player_data(data)
-                    
-
-                    # player_data.append([player_name,version,club,league,nation,player_positon, player_other_positions, player_price])
-        # saveToCSV(player_data)
+                 
 scrapeData()
 
