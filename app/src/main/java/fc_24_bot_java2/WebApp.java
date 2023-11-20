@@ -21,10 +21,12 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(20000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
         
         } catch (Exception e) {
+            System.out.println("Error going to transfer market");
+            return;
         }
     }
     
@@ -35,7 +37,8 @@ public class WebApp {
             var button = new ClickButton("Transfers", driver);
             button.click("/html/body/main/section/nav/button[3]");
         } catch (Exception e) {
-            
+            System.out.println("Error going to transfers");
+            return;
         }
         
     }
@@ -45,7 +48,7 @@ public class WebApp {
             String xpath = "/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[6]/div[2]/input";
             driver.findElement(By.xpath(xpath)).sendKeys(String.valueOf(playerPrice));
         } catch (Exception e) {
-            System.out.println("Failed to set max buy price");
+            System.out.println("Error setting max buy price");
             return;
         }
         
@@ -69,25 +72,47 @@ public class WebApp {
     }
     public void setFilters(Player player)
     {
-        var name =player.getName();
-        // var version = player.getVersion();
-        enterPlayerName(name);
-        setRarity();
+        enterPlayerName(player.getName());
+        setQuality(player);
+        setRarity(player);
+       
+    }
+    private void setQuality(Player player)
+    {
+        var button = new ClickButton("Quality", driver);
+        var version = player.getVersion();
+        if (version.startsWith("Gold")){version = "Gold";}
+        else if(version.startsWith("Silver")){version= "Silver";}
+        else if(version.startsWith("Bronze")){version= "Bronze";}
+        else{version = "Special";}
+        button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div/div");
         var elements =driver.findElements(By.className("with-icon"));
         for (int i = 0; i < elements.size(); i++) {
-            if(elements.get(i).getText().equals("Team of the Week"))
+            if(elements.get(i).getText().equals(version))
             {
                 elements.get(i).click();
-                break;
+                return;
             }
         }
-        setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
 
     }
-    public void setRarity()
+    private void setRarity(Player player)
     {
-        var button = new ClickButton("Rarity", driver);
+     
+        var version = player.getVersion();
+        if (version.endsWith("Common")){version = "Common";}
+        else if(version.endsWith("Rare")){version= "Rare";}
+        else if(version.endsWith("Team of the Week")){version= "Team of the Week";}
+        var button = new ClickButton("Rarity ", driver);
         button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[1]/div[3]/div/div/span");
+        var elements =driver.findElements(By.className("with-icon"));
+        for (int i = 0; i < elements.size(); i++) {
+            if(elements.get(i).getText().equals(version))
+            {
+                elements.get(i).click();
+                return;
+            }
+        }
 
     }
     public void goHome()
@@ -136,13 +161,12 @@ public class WebApp {
 
     public void incrementMinBuyPrice() {
         try {
-            // Thread.sleep(500);
+            Thread.sleep(500);
             var button = new ClickButton("Increment Min Buy", driver);
             button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[5]/div[2]/button[2]");
         } catch (Exception e) {
-            
+            System.out.println("Error incrementing min buy price");
         }
-        
     }
     
     public void resetMinBuyPrice() {
@@ -152,15 +176,13 @@ public class WebApp {
 
     public void search() {
         driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div[2]/div/div[2]/button[2]")).click();
-    }
+    }    
     public boolean buyPlayer() {
         try {
-            var buyPlayerButton = new ClickButton("Buy Player", driver);
-            buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
+            var buyPlayerButton = driver.findElement(By.className("btn-standard buyButton currency-coins"));
+            buyPlayerButton.click();
             var elements = driver.findElements(By.className("btn-text"));
             elements.get(2).click();
-
-
             Thread.sleep(2000);
             goBackToTransferMarket();
             return true;
@@ -172,7 +194,10 @@ public class WebApp {
 
     public void goBackToTransferMarket() {
         try {
+            Thread.sleep(1000);
             driver.findElement(By.className("ut-navigation-button-control")).click();
+            var button = new ClickButton("Go Back Transfer", driver);
+            button.click("/html/body/main/section/section/div[1]/button[1]");
         } catch (Exception e) {
             System.out.println("Failed to go back to transfer market");
         }

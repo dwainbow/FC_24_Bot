@@ -54,8 +54,8 @@ public class Player {
         return "{" +
                 "Name: '" + name +  
                 ", rating: " + rating + 
-                ", version: '" + version + 
-                ", position: '" + position + 
+                ", version: " + version + 
+                ", position: " + position + 
                 ", club: '" + club + 
                 ", price: " + price +
                 '}';

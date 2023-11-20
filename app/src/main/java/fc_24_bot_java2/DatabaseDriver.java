@@ -161,7 +161,7 @@ public class DatabaseDriver {
         try {
             var statement= connection.createStatement();
             List returnedPlayers = new ArrayList<Player>();
-            var result = statement.executeQuery(String.format("SELECT * FROM PLAYERS WHERE Version = '%s'", version));
+            var result = statement.executeQuery(String.format("SELECT * FROM PLAYERS WHERE Version LIKE '%%%s%%' ORDER BY PRICE " , version));
             while(result.next()) {
                 var playerName = result.getString("Name");
                 var version1 = result.getString("Version");

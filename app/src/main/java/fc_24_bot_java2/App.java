@@ -9,9 +9,9 @@ public class App {
         try {
             dataBaseDriver.connect();
             Player playerBuy;
-            var players = dataBaseDriver.getPlayersByPrice(40000,30000);
+            var players = dataBaseDriver.getPlayersByVersion("Team of the Week");
             if (players.size() >1 ) {
-                System.out.println("There is more than one version, which one do you want to trade?");
+                System.out.println("There is more than one, which one do you want to trade?");
                 for (int i = 0; i < players.size(); i++) {
                 System.out.println(i + ") " + players.get(i).toString());
             }
