@@ -21,7 +21,7 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(20000);
+            Thread.sleep(10000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
         
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class WebApp {
 
     public void goToTransfers() {
         try {
-            Thread.sleep(20000);
+            Thread.sleep(10000);
             var button = new ClickButton("Transfers", driver);
             button.click("/html/body/main/section/nav/button[3]");
         } catch (Exception e) {
@@ -176,7 +176,8 @@ public class WebApp {
 
     public void search() {
         driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div[2]/div/div[2]/button[2]")).click();
-    }    
+    }   
+
     public boolean buyPlayer() {
         try {
             var buyPlayerButton = driver.findElement(By.className("btn-standard buyButton currency-coins"));
@@ -190,7 +191,6 @@ public class WebApp {
             return false;
         }
     }
-
 
     public void goBackToTransferMarket() {
         try {

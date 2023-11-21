@@ -110,6 +110,7 @@ def convertVersion(version):
         return version
     return versionsMap[version]
 
+
 def scrapeData():
 
     populate_database = PopulateDatabase("fc24.db")
