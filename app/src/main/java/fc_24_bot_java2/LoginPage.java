@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-
-
 public class LoginPage {
     private String email;
     private String password;
@@ -62,22 +60,12 @@ public class LoginPage {
         var sendCode = driver.findElement(By.id("btnSendCode"));
         sendCode.click();
 
+
         var twoFactorCode = driver.findElement(By.id("twoFactorCode"));
-        System.out.print("Enter 2FA code: ");
-        Scanner code = new Scanner(System.in);
-        twoFactorCode.sendKeys(code.nextLine());
+        twoFactorCode.sendKeys(Authenticator.getTOTPCode());
 
         var verifyButton = driver.findElement(By.id("btnSubmit"));
         verifyButton.click();
-        while(!validCode())
-        {   
-            System.out.println("Invalid Code");
-            System.out.print("Enter 2FA code: ");
-            code = new Scanner(System.in);
-            twoFactorCode.sendKeys(code.nextLine());
-            verifyButton.click();
-        }
-        System.out.println("Successfully authenticated");
 
     }
     public void loginWebApp()
@@ -91,23 +79,8 @@ public class LoginPage {
         } catch (Exception e) {
             System.out.println("Error logging in to web app");
         }
-        
-
     }
 
-    private boolean validCode()
-    {
-        try
-        {
-           var invalidCode = driver.findElement(By.xpath("/html/body/div[1]/form/div/section/div[3]/p"));
-           return false;
-        }
-        catch(Exception  e)
-        {
-            System.out.println("Code is valid");
-            return true;
-        }
-    }
         
         
 
