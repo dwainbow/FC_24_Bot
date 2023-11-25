@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class CSV {
     private static final String CSV_FILE_PATH = "BotData.csv";
@@ -15,14 +17,35 @@ public class CSV {
 
     public CSV() {
         this.headers = new ArrayList<>(List.of("Successes", "Failures"));
-        this.rows = new ArrayList<>();
+        this.rows = readFromFile();
+    }
+    public int getNumRows()
+    {
+        return rows.size();
+    }
+
+    private List<List<String>> readFromFile() {
+        List<List<String>> data = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(CSV_FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] values = line.split(",");
+                data.add(Arrays.asList(values));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return data;
     }
 
     public void addRow(String... values) {
         this.rows.add(Arrays.asList(values));
+        writeToFile();
     }
 
-    public void updateRow(int rowIndex, String ... newValues) {
+    public void updateRow(int rowIndex, String... newValues) {
         if (rowIndex >= 0 && rowIndex < rows.size()) {
             List<String> row = rows.get(rowIndex);
             for (int i = 0; i < Math.min(row.size(), newValues.length); i++) {
@@ -36,7 +59,7 @@ public class CSV {
 
     public void writeToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSV_FILE_PATH))) {
-            writeRow(writer, headers);
+            // writeRow(writer, headers);
 
             for (List<String> row : rows) {
                 writeRow(writer, row);
@@ -54,9 +77,4 @@ public class CSV {
         }
         writer.newLine();
     }
-
 }
-    
-
-    
-

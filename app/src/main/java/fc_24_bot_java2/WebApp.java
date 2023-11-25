@@ -180,12 +180,12 @@ public class WebApp {
 
     public boolean buyPlayer() {
         try {
-            driver.findElement(By.className("entityContainer"));
+            Thread.sleep(1000);
             var buyPlayerButton = new ClickButton("Buy Player", driver);
             buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
             var elements = driver.findElements(By.className("btn-text"));
-            elements.get(2).click();
-            Thread.sleep(1000);
+            elements.get(3).click();
+            Thread.sleep(500);
             goBackToTransferMarket();
             return true;
         } catch (Exception e) {

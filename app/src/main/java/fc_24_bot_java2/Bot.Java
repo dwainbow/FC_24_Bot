@@ -31,9 +31,9 @@ public class Bot {
         var failureCount = 0;
         var successCount = 0;
         int threshold;
-        if(player.getPrice()>2000)
+        if(player.getPrice()>5000)
         {
-            threshold = 10;
+            threshold = 15;
         }
         else
         {
@@ -69,13 +69,13 @@ public class Bot {
                 {
                     successCount++;
                     System.out.println("Successfully bought player");
-                    csv.updateRow(0, Integer.toString(successCount), Integer.toString(failureCount));
+                    csv.updateRow(csv.getNumRows()-1, Integer.toString(successCount), Integer.toString(failureCount));
                 }   
                 else
                 {
                     System.out.println("Unsuccesfully bought player");
                     failureCount++;
-                    csv.updateRow(0, Integer.toString(successCount), Integer.toString(failureCount));
+                    csv.updateRow(csv.getNumRows()-1, Integer.toString(successCount), Integer.toString(failureCount));
                     
                 }
 
