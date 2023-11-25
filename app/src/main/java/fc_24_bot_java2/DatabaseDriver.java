@@ -194,7 +194,7 @@ public class DatabaseDriver {
         }
         List returnedPlayers = new ArrayList<>();
         try {
-            var sql = String.format("SELECT * FROM PLAYERS WHERE Price <= %d and Price >= %d ", hi,lo );
+            var sql = String.format("SELECT * FROM PLAYERS WHERE Price <= %d and Price >= %d ORDER BY Price", hi,lo );
             var statement = connection.createStatement();
             var result = statement.executeQuery(sql);
             while(result.next())

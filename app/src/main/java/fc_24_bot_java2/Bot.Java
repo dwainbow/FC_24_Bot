@@ -30,28 +30,38 @@ public class Bot {
         var csv= new CSV();
         var failureCount = 0;
         var successCount = 0;
+        int threshold;
+        if(player.getPrice()>2000)
+        {
+            threshold = 10;
+        }
+        else
+        {
+            threshold = 5;
+        }
         csv.addRow("0", "0");
         csv.writeToFile();
         webapp.setFilters(player);
-        webapp.setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
+        webapp.setMaxBuyPrice(Double.toString(player.getPrice()*0.90));
         var playersAcquired= 0;
         var attempts= 0;
         var initCoins = webapp.getCoins();
-        if(initCoins< player.getPrice()*0.85)
+        if(initCoins< player.getPrice()*0.90)
         {
             System.out.println("Not enough coins to buy player");
             return;
         }
         System.out.println("Searching...");
-        while(playersAcquired<5 && initCoins>=player.getPrice()*0.85)
+        while(playersAcquired<5 && initCoins>=player.getPrice()*0.90)
         {
-            if(attempts > 5)
+            if(attempts > threshold)
             {
                 webapp.resetMinBuyPrice();
                 attempts= 0 ;
             }
             webapp.incrementMinBuyPrice();
             webapp.search();
+            
             if (webapp.buyPlayer())
             {
                 
@@ -69,7 +79,7 @@ public class Bot {
                     
                 }
 
-                if (initCoins < player.getPrice() * 0.85) {
+                if (initCoins < player.getPrice() * 0.90) {
                     System.out.println("Not enough coins to continue Trading");
                     return;
                 }

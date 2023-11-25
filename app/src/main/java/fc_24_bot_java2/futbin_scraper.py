@@ -1,5 +1,4 @@
 import requests
-import csv
 from bs4 import BeautifulSoup
 from populateDatabase import PopulateDatabase
 
@@ -119,9 +118,9 @@ def scrapeData():
     # populate_database.create_tables()
     
 
-    versions = ["icons", "centurions_icon", "if_gold", "if_silver", "if_bronze",  "gold_rare", "gold_nr","centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
+    versions = ["icons", "centurions_icon", "if_gold", "if_silver", "if_bronze",  "gold_rare", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
                 "fut_heroes",  "silver_rare", "silver_nr",
-                "bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana"] 
+                "bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana","gold_nr",] 
     
     for version in versions:
         page_number= 0
