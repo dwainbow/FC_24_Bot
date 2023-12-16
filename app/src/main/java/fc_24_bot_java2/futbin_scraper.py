@@ -119,8 +119,7 @@ def scrapeData():
     
 
     versions = ["icons", "centurions_icon", "if_gold", "if_silver", "if_bronze",  "gold_rare", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
-                "fut_heroes",  "silver_rare", "silver_nr",
-                "bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana","gold_nr",] 
+                "fut_heroes",  "silver_rare", "silver_nr","bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana","gold_nr",] 
     
     for version in versions:
         page_number= 0

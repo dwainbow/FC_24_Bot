@@ -1,5 +1,4 @@
 package fc_24_bot_java2;
-import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,14 +14,17 @@ public class LoginPage {
         this.email = email;
         this.password = password;
         setDriver();
+        login();
+        authenticate();
+        loginWebApp();
     }
     
 
     private void setDriver() {
         FirefoxOptions options = new FirefoxOptions();
         
-        // options.addArguments("--headless");
-        // options.addArguments("--disable-gpu");
+        options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
         this.driver= new FirefoxDriver(options);
 
         this.driver.get("https://signin.ea.com/p/juno/login?execution=e1540455597s1&initref=https%3A%2F%2Faccounts.ea.com%3A443%2Fconnect%2Fauth%3Fhide_create%3Dtrue%26display%3Dweb2%252Flogin%26scope%3Dbasic.identity%2Boffline%2Bsignin%2Bbasic.entitlement%2Bbasic.persona%26release_type%3Dprod%26response_type%3Dtoken%26redirect_uri%3Dhttps%253A%252F%252Fwww.ea.com%252Fea-sports-fc%252Fultimate-team%252Fweb-app%252Fauth.html%26accessToken%3D%26locale%3Den_US%26prompt%3Dlogin%26client_id%3DFC24_JS_WEB_APP");
@@ -32,7 +34,7 @@ public class LoginPage {
         return this.driver;
     }
 
-    public void login()
+    private void login()
     {
         try {
             System.out.println("Logging in...");
@@ -52,7 +54,7 @@ public class LoginPage {
         
     }
    
-    public void authenticate()
+    private void authenticate()
     {
         System.out.println("Authenticating...");
         var authenticator = driver.findElement(By.id("APPLabel"));
@@ -69,7 +71,7 @@ public class LoginPage {
         System.out.println("Successfully authenticated");
 
     }
-    public void loginWebApp()
+    private void loginWebApp()
     {
         try {
             Thread.sleep(10000);

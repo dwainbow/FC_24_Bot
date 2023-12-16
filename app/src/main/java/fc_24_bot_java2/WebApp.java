@@ -43,7 +43,7 @@ public class WebApp {
         
     }
 
-    public void setMaxBuyPrice(String playerPrice) {
+    private void setMaxBuyPrice(String playerPrice) {
         try {
             String xpath = "/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[2]/div[6]/div[2]/input";
             driver.findElement(By.xpath(xpath)).sendKeys(String.valueOf(playerPrice));
@@ -75,7 +75,7 @@ public class WebApp {
         enterPlayerName(player.getName());
         setQuality(player);
         setRarity(player);
-       
+        setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
     }
     private void setQuality(Player player)
     {
@@ -159,7 +159,7 @@ public class WebApp {
         enterPlayerName(playerName);
     }
 
-    public void incrementMinBuyPrice() {
+    private void incrementMinBuyPrice() {
         try {
             Thread.sleep(500);
             var button = new ClickButton("Increment Min Buy", driver);
@@ -175,16 +175,16 @@ public class WebApp {
     }
 
     public void search() {
+        incrementMinBuyPrice();
         driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div[2]/div/div[2]/button[2]")).click();
     }   
 
     public boolean buyPlayer() {
         try {
-            Thread.sleep(1000);
-            var buyPlayerButton = new ClickButton("Buy Player", driver);
-            buyPlayerButton.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]");
+            Thread.sleep(800);
+            driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]")).click();
             var elements = driver.findElements(By.className("btn-text"));
-            elements.get(3).click();
+            elements.get(2).click();
             Thread.sleep(500);
             goBackToTransferMarket();
             return true;

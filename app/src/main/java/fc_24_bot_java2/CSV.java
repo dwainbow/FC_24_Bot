@@ -11,13 +11,24 @@ import java.io.FileReader;
 
 public class CSV {
     private static final String CSV_FILE_PATH = "BotData.csv";
-
+    private static CSV instance;
     private List<String> headers;
     private List<List<String>> rows;
 
-    public CSV() {
+    public static CSV getInstance(){
+        if (instance == null){
+            instance = new CSV();
+        }
+        return instance;
+    }
+
+
+    private CSV() {
         this.headers = new ArrayList<>(List.of("Successes", "Failures"));
         this.rows = readFromFile();
+        addRow("0", "0");
+        writeToFile();
+
     }
     public int getNumRows()
     {
@@ -40,7 +51,7 @@ public class CSV {
         return data;
     }
 
-    public void addRow(String... values) {
+    private void addRow(String... values) {
         this.rows.add(Arrays.asList(values));
         writeToFile();
     }
@@ -57,7 +68,7 @@ public class CSV {
         }
     }
 
-    public void writeToFile() {
+    private void writeToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSV_FILE_PATH))) {
             // writeRow(writer, headers);
 
