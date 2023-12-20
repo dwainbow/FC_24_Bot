@@ -7,9 +7,9 @@ public class Bot {
     private int successCount;
     private int failureCount;
 
-    public Bot(String email,String password)
+    public Bot(User user)
     {
-        this.login = new LoginPage(email, password);
+        this.login = new LoginPage(user);
         this.webapp = new WebApp(login.getDriver());
         goToTransferMarket();
     }

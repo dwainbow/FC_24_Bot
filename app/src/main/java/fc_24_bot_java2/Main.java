@@ -22,7 +22,8 @@ public class Main {
             } else {
                 playerBuy = players.get(0);
             }
-            var bot = new Bot("overthedwainbow@gmail.com","Daniels2002");
+            User user = new User("overthedwainbow@gmail.com","Daniels2002");
+            var bot = new Bot(user);
             bot.trade(playerBuy);
             
             

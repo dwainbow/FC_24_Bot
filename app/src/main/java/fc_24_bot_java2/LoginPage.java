@@ -8,11 +8,14 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 public class LoginPage {
     private String email;
     private String password;
+    private String code;
     private WebDriver driver;
 
-    public LoginPage(String email, String password) {
-        this.email = email;
-        this.password = password;
+    public LoginPage(User user) {
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.code = user.getCode();
+        
         setDriver();
         login();
         authenticate();
@@ -36,7 +39,6 @@ public class LoginPage {
     private void login()
     {
         try {
-            System.out.println("Logging in...");
             var username = driver.findElement(By.id("email"));
             username.sendKeys(email);
 
@@ -61,14 +63,11 @@ public class LoginPage {
             authenticator.click();
             var sendCode = driver.findElement(By.id("btnSendCode"));
             sendCode.click();
-
-
             var twoFactorCode = driver.findElement(By.id("twoFactorCode"));
-            twoFactorCode.sendKeys(Authenticator.getTOTPCode());
-
+            twoFactorCode.sendKeys(code);
+            
             var verifyButton = driver.findElement(By.id("btnSubmit"));
             verifyButton.click();
-            System.out.println("Successfully authenticated");
             
         } catch (Exception e) {
             System.out.println("Error authenticating");
@@ -81,17 +80,12 @@ public class LoginPage {
     {
         try {
             Thread.sleep(10000);
-            System.out.println("Logging in to web app...");
             var button = new ClickButton("loginWebApp", driver);
             button.click("/html/body/main/div/div/div/button[1]");
-            System.out.println("Successfully logged in to web app");
         } catch (Exception e) {
             System.out.println("Error logging in to web app");
         }
     }
-
-        
-        
 
 
 }

@@ -21,7 +21,7 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
         
         } catch (Exception e) {

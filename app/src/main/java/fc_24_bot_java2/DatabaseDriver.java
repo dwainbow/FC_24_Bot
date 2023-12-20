@@ -38,7 +38,6 @@ public class DatabaseDriver {
                 var nation = result.getString("Nation");
                 var rating = result.getInt("Rating");
 
-
                 var temp = new Player(playerName, version, position, nation, club, price,rating);
                 returnedPlayers.add(temp);
             }
