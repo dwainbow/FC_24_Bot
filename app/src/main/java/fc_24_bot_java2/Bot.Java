@@ -63,9 +63,9 @@ public class Bot {
         
         System.out.println("Searching...");
 
-        while(playersAcquired<5 && initCoins>=player.getPrice()*0.85)
+        while(playersAcquired<5 && initCoins>=player.getPrice()*0.95)
         {
-            if(initCoins< player.getPrice()*0.85)
+            if(initCoins< player.getPrice()*0.95)
             {
                 System.out.println("Cannot Trade, not enough coins");
                 return;
@@ -77,7 +77,6 @@ public class Bot {
             }
             // var start =System.currentTimeMillis();
             webapp.search();
-            
             if (webapp.buyPlayer())
             {
                 
@@ -91,7 +90,7 @@ public class Bot {
                     incremenFailure();
                 }
             }
-            webapp.goBackToTransferMarket();
+            webapp.goBackToTransferMarket(); 
             attempts++;
             // var end = System.currentTimeMillis();
             // System.out.println((double)end-start);

@@ -52,6 +52,15 @@ class PopulateDatabase:
         """
         cursor.execute(insert_query, player_values)
         self.connection.commit()
+
+    # def update_player_data(self,player_data):
+    #     cursor = self.connection.cursor()
+    #     player_values = (None,player_data[0], player_data[1], player_data[2], player_data[3], player_data[4], player_data[5], player_data[6],player_data[7],player_data[8])
+    #     update_query = """
+    #         UPDATE PLAYERS SET Name = ?,Rating = ?,Version = ?, Club = ?, League = ?, Nation = ?, Position = ?, OtherPositions = ?,Price = ? WHERE ID = ?
+    #     """
+    #     cursor.execute(update_query, player_values)
+    #     self.connection.commit()
     
     def clear_table(self):
         cursor = self.connection.cursor()

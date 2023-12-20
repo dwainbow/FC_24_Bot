@@ -9,7 +9,7 @@ public class Main {
         try {
             dataBaseDriver.connect();
             Player playerBuy;
-            var players = dataBaseDriver.getPlayersByPrice(30000,15000);
+            var players = dataBaseDriver.getPlayersByPrice(1000,500);
             if (players.size() >1 ) {
                 System.out.println("There is more than one, which one do you want to trade?");
                 for (int i = 0; i < players.size(); i++) {

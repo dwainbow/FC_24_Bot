@@ -21,7 +21,7 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
         
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class WebApp {
 
     public void goToTransfers() {
         try {
-            Thread.sleep(15000);
+            Thread.sleep(10000);
             var button = new ClickButton("Transfers", driver);
             button.click("/html/body/main/section/nav/button[3]");
         } catch (Exception e) {
@@ -195,7 +195,7 @@ public class WebApp {
 
     public void goBackToTransferMarket() {
         try {
-            Thread.sleep(1000);
+            // Thread.sleep(1000);
             driver.findElement(By.className("ut-navigation-button-control")).click();
             var button = new ClickButton("Go Back Transfer", driver);
             button.click("/html/body/main/section/section/div[1]/button[1]");
