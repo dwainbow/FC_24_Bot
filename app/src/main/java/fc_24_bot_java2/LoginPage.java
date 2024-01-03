@@ -15,7 +15,6 @@ public class LoginPage {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.code = user.getCode();
-        
         setDriver();
         login();
         authenticate();
@@ -36,6 +35,7 @@ public class LoginPage {
         return this.driver;
     }
 
+
     private void login()
     {
         try {
@@ -47,10 +47,9 @@ public class LoginPage {
 
             var loginButton = driver.findElement(By.id("logInBtn"));
             loginButton.click();
-            return ;
+            
         } catch (Exception e) {
-            System.out.println("Error logging in");
-            return ;
+
         }
         
     }
@@ -58,22 +57,17 @@ public class LoginPage {
     private void authenticate()
     {
         try {
-            System.out.println("Authenticating...");
             var authenticator = driver.findElement(By.id("APPLabel"));
             authenticator.click();
             var sendCode = driver.findElement(By.id("btnSendCode"));
             sendCode.click();
             var twoFactorCode = driver.findElement(By.id("twoFactorCode"));
             twoFactorCode.sendKeys(code);
-            
             var verifyButton = driver.findElement(By.id("btnSubmit"));
             verifyButton.click();
             
         } catch (Exception e) {
-            System.out.println("Error authenticating");
-            return;
         }
-        
 
     }
     private void loginWebApp()
@@ -83,7 +77,7 @@ public class LoginPage {
             var button = new ClickButton("loginWebApp", driver);
             button.click("/html/body/main/div/div/div/button[1]");
         } catch (Exception e) {
-            System.out.println("Error logging in to web app");
+            
         }
     }
 

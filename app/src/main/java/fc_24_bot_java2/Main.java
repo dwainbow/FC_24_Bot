@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        var dataBaseDriver = new DatabaseDriver("fc24.db");
-        
+
+        var dataBaseDriver = Config.getInstance();        
         try {
             dataBaseDriver.connect();
             Player playerBuy;

@@ -16,6 +16,11 @@ repositories {
     mavenCentral()
 }
 
+javafx {
+    version = '17.0.9'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'

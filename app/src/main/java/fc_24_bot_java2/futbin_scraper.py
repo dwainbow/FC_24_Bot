@@ -115,9 +115,7 @@ def scrapeData():
     populate_database = PopulateDatabase("fc24.db")
     populate_database.connect()
     populate_database.clear_table()
-    # populate_database.create_tables()
     
-
     versions = ["gold_rare","icons", "centurions_icon", "if_gold", "if_silver", "if_bronze", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
                 "fut_heroes",  "silver_rare", "silver_nr","bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana","gold_nr",] 
     
@@ -148,5 +146,6 @@ def scrapeData():
                     data = [player_name,rating,convertVersion(version),club,league,nation,player_positon, player_other_positions, player_price]
                     populate_database.insert_player_data(data)
                  
-scrapeData()
+if __name__ == "__main__":
+    scrapeData()
 
