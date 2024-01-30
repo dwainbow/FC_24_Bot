@@ -1,9 +1,7 @@
 package fc_24_bot_java2;
 
-import org.checkerframework.checker.units.qual.s;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.Keys;
 
 public class WebApp {
     private final WebDriver driver;
@@ -21,7 +19,7 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(15000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
         
         } catch (Exception e) {
@@ -33,7 +31,7 @@ public class WebApp {
 
     public void goToTransfers() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(15000);
             var button = new ClickButton("Transfers", driver);
             button.click("/html/body/main/section/nav/button[3]");
         } catch (Exception e) {
@@ -76,6 +74,14 @@ public class WebApp {
         setQuality(player);
         setRarity(player);
         setMaxBuyPrice(Double.toString(player.getPrice()*0.85));
+    }
+
+    public void setFilters(Player player, int maxPrice)
+    {
+        enterPlayerName(player.getName());
+        setQuality(player);
+        setRarity(player);
+        setMaxBuyPrice(Double.toString(maxPrice));
     }
     private void setQuality(Player player)
     {
@@ -125,33 +131,7 @@ public class WebApp {
         var button = new ClickButton("UnassignedItems", driver);
         button.click("/html/body/main/section/section/div[2]/div/div/div[1]/div[1]");
     }
-    public void pressListTransferMarket()
-    {
-        var button = new ClickButton("List on Transfer Button", driver);
-        button.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]");
-
-    }
-    public void setListingPrice(int maxPrice)
-    {  
-        maxPrice = 500;
-        driver
-        .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
-        .sendKeys(Keys.DELETE);
-        // driver
-        // .findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[3]/div[2]/input"))
-        // .sendKeys(String.valueOf(maxPrice));
-
-        driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
-        .clear();
-        // driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/div[2]/div[2]/input"))
-        // .sendKeys("1000");
-    }
-    public void listOnTransfer()
-    {
-        var button = new ClickButton("List on Transfer", driver);
-        button.click("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/div[2]/button");
-    }
-    
+ 
     public void reset(String playerName) {
         System.out.println("Error occurred, resetting");
         goToTransfers();

@@ -18,14 +18,6 @@ public class Bot {
         webapp.goToTransfers();
         webapp.goToTransferMarket();
     }
-    public void trade(Player player)
-    {
-        while(true)
-        {
-            buyPlayers(player);
-            // sellPlayers(player);
-        }
-    } 
     private int setThreshold(Player player)
     {
         int threshold;
@@ -53,7 +45,7 @@ public class Bot {
         csv.updateRow(csv.getNumRows()-1, Integer.toString(successCount), Integer.toString(failureCount));
         System.out.println("Unsuccesfully bought player");
     }
-    private void buyPlayers(Player player)
+    public void buyPlayers(Player player)
     {
         webapp.setFilters(player);
         var initCoins = webapp.getCoins();
@@ -98,15 +90,51 @@ public class Bot {
 
         
     }
-    // public void sellPlayers(Player player)
-    // {
-    //     // webapp.goHome();
-    //     webapp.goToUnnasignedItems();
-    //     while(!webapp.noResult())
-    //     {
-    //         webapp.pressListTransferMarket();
-    //         webapp.setListingPrice((int) player.getPrice());
-    //         // webapp.listOnTransfer();
-    //     }
-    // }
+
+    public void buyPlayers(Player player, int maxPrice)
+    {
+        webapp.setFilters(player, maxPrice);
+        var initCoins = webapp.getCoins();
+        var attempts= 0;
+        var playersAcquired= 0;
+        var threshold = setThreshold(player);
+        
+        System.out.println("Searching...");
+
+        while(playersAcquired<5 && initCoins>=player.getPrice()*0.95)
+        {
+            if(initCoins< player.getPrice()*0.95)
+            {
+                System.out.println("Cannot Trade, not enough coins");
+                return;
+            }
+            if(attempts > threshold)
+            {
+                webapp.resetMinBuyPrice();
+                attempts= 0 ;
+            }
+            // var start =System.currentTimeMillis();
+            webapp.search();
+            if (webapp.buyPlayer())
+            {
+                
+                if(webapp.getCoins()<initCoins)
+                {
+                    initCoins = webapp.getCoins();
+                    incrementSuccess();
+                }   
+                else
+                {
+                    incremenFailure();
+                }
+            }
+            webapp.goBackToTransferMarket(); 
+            attempts++;
+            // var end = System.currentTimeMillis();
+            // System.out.println((double)end-start);
+        }
+
+        
+    }
+    
 }

@@ -67,6 +67,9 @@ public class LoginPage {
             verifyButton.click();
             
         } catch (Exception e) {
+            System.out.println("Error authenticating. User information may be incorrect");
+            new Config().resetConfig();
+            System.exit(0);
         }
 
     }

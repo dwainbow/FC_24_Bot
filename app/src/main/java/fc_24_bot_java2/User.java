@@ -7,9 +7,9 @@ private String email;
 private String password;
 private String code;
 
-public User(String email, String password) {
-    this.email = email;
-    this.password = password;
+public User(Config config) {
+    this.email = config.getEmail();
+    this.password = config.getPassword();
     this.code = Authenticator.getTOTPCode();
 
 }
