@@ -60,7 +60,6 @@ public class Main {
             
             
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
             System.out.println("Unknown error occured. Restart application and try again");
             return;
         }
