@@ -104,6 +104,7 @@ def convertVersion(version):
         "if_bronze":"Bronze Team of the Week",
         "libertadores_b": "CONMEBOL Libertadores",
         "sudamericana": "CONMEBOL Sudamericana",
+
     }
     if version not in versionsMap:
         return version
@@ -118,7 +119,7 @@ def scrapeData():
     populate_database.clear_table()
     
     versions = ["gold_rare","icons", "centurions_icon", "if_gold", "if_silver", "if_bronze", "centurions", "pundit_pick","triple_threat_hero","triple_threat","trailblazers","all_rttk","ucl_w","uefa_heroes_men","uefa_heroes_women", "nike", 
-                "fut_heroes",  "silver_rare", "silver_nr","bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana","gold_nr",] 
+                "fut_heroes",  "silver_rare", "silver_nr","bronze_rare", "bronze_nr", "icons", "libertadores_b", "sudamericana","gold_nr","toty"] 
     
     for version in versions:
         page_number= 0
