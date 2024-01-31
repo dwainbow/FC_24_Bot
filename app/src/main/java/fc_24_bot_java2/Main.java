@@ -40,11 +40,13 @@ public class Main {
                 playerBuy = players.get(0);
             }
 
-            System.out.println("Buying: " + playerBuy.toString());
+            
 
             var bot = new Bot(user);
-            
+
+            System.out.println("Buying: " + playerBuy.toString());
             System.out.println("The recommended price is " +playerBuy.getPrice()+ " , Would you like to set a max buy price? (y/n)");
+            bot.goToTransferMarket();
             var choice = input.next();
             if(choice.equals("y"))
             {
@@ -60,6 +62,7 @@ public class Main {
             
             
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Unknown error occured. Restart application and try again");
             return;
         }

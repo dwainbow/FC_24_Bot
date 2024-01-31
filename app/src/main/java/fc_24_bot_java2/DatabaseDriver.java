@@ -18,8 +18,8 @@ public class DatabaseDriver {
         if (connection != null && !connection.isClosed()) {
             throw new IllegalStateException("The connection is already opened");
         }
-        connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFilename);
 
+        connection = DriverManager.getConnection("jdbc:sqlite:" + sqliteFilename);
         connection.createStatement().execute("PRAGMA foreign_keys = ON");
         connection.setAutoCommit(false);
     }

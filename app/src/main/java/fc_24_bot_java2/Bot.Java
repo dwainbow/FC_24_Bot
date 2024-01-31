@@ -11,9 +11,9 @@ public class Bot {
     {
         this.login = new LoginPage(user);
         this.webapp = new WebApp(login.getDriver());
-        goToTransferMarket();
+        // goToTransferMarket();
     }
-    private void goToTransferMarket()
+    public void goToTransferMarket()
     {
         webapp.goToTransfers();
         webapp.goToTransferMarket();

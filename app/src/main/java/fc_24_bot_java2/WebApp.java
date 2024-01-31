@@ -180,7 +180,7 @@ public class WebApp {
             var button = new ClickButton("Go Back Transfer", driver);
             button.click("/html/body/main/section/section/div[1]/button[1]");
         } catch (Exception e) {
-            System.out.println("Failed to go back to transfer market");
+            // System.out.println("Failed to go back to transfer market");
         }
     }
 
