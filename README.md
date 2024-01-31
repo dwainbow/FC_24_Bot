@@ -36,8 +36,7 @@ To use the FIFA Trading Bot, follow these steps:
 ## Contribution
 Contributions to the FIFA Trading Bot are welcome. Please ensure that you adhere to this project's code of conduct and submit your pull requests for review.
 
-## License
-[Specify the type of license]
+
 
 ## Contact
 For support or contributions, please contact me at ekowu1r@gmail.com.
