@@ -11,7 +11,6 @@ public class Bot {
     {
         this.login = new LoginPage(user);
         this.webapp = new WebApp(login.getDriver());
-        // goToTransferMarket();
     }
     public void goToTransferMarket()
     {
@@ -67,11 +66,9 @@ public class Bot {
                 webapp.resetMinBuyPrice();
                 attempts= 0 ;
             }
-            // var start =System.currentTimeMillis();
             webapp.search();
             if (webapp.buyPlayer())
             {
-                
                 if(webapp.getCoins()<initCoins)
                 {
                     initCoins = webapp.getCoins();
@@ -84,8 +81,6 @@ public class Bot {
             }
             webapp.goBackToTransferMarket(); 
             attempts++;
-            // var end = System.currentTimeMillis();
-            // System.out.println((double)end-start);
         }
 
         
@@ -100,7 +95,6 @@ public class Bot {
         var threshold = setThreshold(player);
         
         System.out.println("Searching...");
-
         while(playersAcquired<5 && initCoins>=player.getPrice()*0.95)
         {
             if(initCoins< player.getPrice()*0.95)
@@ -113,11 +107,9 @@ public class Bot {
                 webapp.resetMinBuyPrice();
                 attempts= 0 ;
             }
-            // var start =System.currentTimeMillis();
             webapp.search();
             if (webapp.buyPlayer())
-            {
-                
+            {                
                 if(webapp.getCoins()<initCoins)
                 {
                     initCoins = webapp.getCoins();
@@ -130,8 +122,6 @@ public class Bot {
             }
             webapp.goBackToTransferMarket(); 
             attempts++;
-            // var end = System.currentTimeMillis();
-            // System.out.println((double)end-start);
         }
 
         

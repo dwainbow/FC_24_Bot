@@ -19,7 +19,7 @@ public class WebApp {
 
     public void goToTransferMarket() {
         try {
-            Thread.sleep(15000);
+            Thread.sleep(3000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/div[2]/div[2]")).click();
         
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class WebApp {
 
     public void goToTransfers() {
         try {
-            Thread.sleep(15000);
+            Thread.sleep(10000);
             var button = new ClickButton("Transfers", driver);
             button.click("/html/body/main/section/nav/button[3]");
         } catch (Exception e) {
@@ -58,16 +58,6 @@ public class WebApp {
         button.click("/html/body/main/section/section/div[2]/div/div[2]/div/div[1]/div[1]/div[1]/div/div[2]/ul/button/span[1]");
     }
 
-    public boolean noResult() {
-        try {
-            Thread.sleep(1000);
-            driver.findElement(By.className("ut-no-results-view"));
-            goBackToTransferMarket();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
     public void setFilters(Player player)
     {
         enterPlayerName(player.getName());
@@ -121,23 +111,7 @@ public class WebApp {
         }
 
     }
-    public void goHome()
-    {
-        var button = new ClickButton("Home", driver);
-        button.click("/html/body/main/section/nav/button[1]");
-    }
-    public void goToUnnasignedItems()
-    {
-        var button = new ClickButton("UnassignedItems", driver);
-        button.click("/html/body/main/section/section/div[2]/div/div/div[1]/div[1]");
-    }
- 
-    public void reset(String playerName) {
-        System.out.println("Error occurred, resetting");
-        goToTransfers();
-        goToTransferMarket();
-        enterPlayerName(playerName);
-    }
+   
 
     private void incrementMinBuyPrice() {
         try {
@@ -161,7 +135,7 @@ public class WebApp {
 
     public boolean buyPlayer() {
         try {
-            Thread.sleep(800);
+            Thread.sleep(1000);
             driver.findElement(By.xpath("/html/body/main/section/section/div[2]/div/div/section[2]/div/div/div[2]/div[2]/button[2]")).click();
             var elements = driver.findElements(By.className("btn-text"));
             elements.get(2).click();
@@ -173,14 +147,13 @@ public class WebApp {
         }
     }
 
+
     public void goBackToTransferMarket() {
         try {
-            // Thread.sleep(1000);
             driver.findElement(By.className("ut-navigation-button-control")).click();
             var button = new ClickButton("Go Back Transfer", driver);
             button.click("/html/body/main/section/section/div[1]/button[1]");
         } catch (Exception e) {
-            // System.out.println("Failed to go back to transfer market");
         }
     }
 

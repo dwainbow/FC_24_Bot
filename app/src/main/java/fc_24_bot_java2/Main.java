@@ -12,6 +12,10 @@ public class Main {
             User user = new User(config);
 
             System.out.println("Welcome to the FUT Trading Bot!");
+            
+            var bot = new Bot(user);
+            bot.goToTransferMarket();
+
             System.out.println("Enter the player name who you want to snipe: ");
 
             var input = new Scanner(System.in);
@@ -40,14 +44,8 @@ public class Main {
                 playerBuy = players.get(0);
             }
 
-            
-
-            var bot = new Bot(user);
-
-            System.out.println("Buying: " + playerBuy.toString());
             System.out.println("The recommended price is " +playerBuy.getPrice()+ " , Would you like to set a max buy price? (y/n)");
-            bot.goToTransferMarket();
-            var choice = input.next();
+            var choice = input.next().strip();
             if(choice.equals("y"))
             {
                 System.out.print("Enter the max buy price: ");
@@ -59,6 +57,8 @@ public class Main {
                 bot.buyPlayers(playerBuy);
 
             }
+            System.out.println("Buying: " + playerBuy.toString());
+
             
             
         } catch (Exception e) {

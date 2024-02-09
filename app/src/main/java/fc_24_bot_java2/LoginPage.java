@@ -12,13 +12,16 @@ public class LoginPage {
     private WebDriver driver;
 
     public LoginPage(User user) {
+        System.out.println("Logging into EA...");  
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.code = user.getCode();
         setDriver();
         login();
+        System.out.println("Authenticating...");
         authenticate();
         loginWebApp();
+        System.out.println("Logging into WebApp...");
     }
     
 
@@ -80,6 +83,7 @@ public class LoginPage {
             Thread.sleep(10000);
             var button = new ClickButton("loginWebApp", driver);
             button.click("/html/body/main/div/div/div/button[1]");
+            Thread.sleep(10000);
         } catch (Exception e) {
             
         }
