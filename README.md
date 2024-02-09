@@ -14,6 +14,7 @@ Before you install and run the FIFA Trading Bot, ensure you meet the following r
 - Python 3
 - Stable internet connection.
 - FIFA Ultimate Team account.
+- Google Authenticator
 
 ## Installation
 1. **Clone the Repository**: Clone this repository to your local machine using `git clone <repository-url>`.
