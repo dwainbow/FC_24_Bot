@@ -26,12 +26,16 @@ Before you install and run the FIFA Trading Bot, ensure you meet the following r
 To use the FIFA Trading Bot, follow these steps:
 
 1. **Log In**: When prompted, enter your FUT account credentials. Ensure that you use the bot in a safe and secure environment.
-2. **Set Trading Parameters**: Configure your trading preferences, including budget limits, preferred players, and profit margins.
-3. **Start Trading**: Initiate the trading bot. Monitor its activities and performance through the console or the integrated UI.
+2. **Start Trading**: Initiate the trading bot. Monitor its activities and performance through the console.
+   
+
+https://github.com/dwainbow/FC_24_Bot/assets/112514789/4a54840a-7d77-4482-8df9-f9412663d5d8
+
+
 
 ## Features
 - Sniping: Snipe players at a price
-- Transaction Logging: Records all trades and transactions for performance analysis.
+- Transaction Logging: Records all trades and transactions for performance analysis (Output CSV FIle).
 
 ## Contribution
 Contributions to the FIFA Trading Bot are welcome. Please ensure that you adhere to this project's code of conduct and submit your pull requests for review.
