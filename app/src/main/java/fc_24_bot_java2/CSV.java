@@ -9,6 +9,10 @@ import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+/**
+ * The CSV class represents a CSV file and provides methods to read from and write to the file.
+ * It follows the singleton design pattern to ensure that only one instance of the CSV class is created.
+ */
 public class CSV {
     private static final String CSV_FILE_PATH = "BotData.csv";
     private static CSV instance;

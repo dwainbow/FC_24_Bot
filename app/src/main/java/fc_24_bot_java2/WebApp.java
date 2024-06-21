@@ -3,6 +3,11 @@ package fc_24_bot_java2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * The WebApp class represents a web application for interacting with a specific website.
+ * It provides methods for navigating the website, setting filters, searching for players,
+ * and buying players from the transfer market.
+ */
 public class WebApp {
     private final WebDriver driver;
 

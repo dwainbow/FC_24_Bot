@@ -1,8 +1,17 @@
 package fc_24_bot_java2;
 import org.jboss.aerogear.security.otp.Totp;
 
+/**
+ * The Authenticator class provides methods for generating a Time-based One-Time Password (TOTP) code.
+ */
 public class Authenticator {
 
+    /**
+     * Generates a TOTP code using the configured token.
+     * If an exception occurs during the process, the user is prompted to re-enter their information and the program is restarted.
+     *
+     * @return The generated TOTP code.
+     */
     public static String getTOTPCode() {
         try {
             Config config = new Config();
@@ -17,7 +26,5 @@ public class Authenticator {
             System.exit(0);
             return null;
         }
-        
     }
-    
 }

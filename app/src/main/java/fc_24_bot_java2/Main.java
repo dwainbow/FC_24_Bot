@@ -2,6 +2,10 @@ package fc_24_bot_java2;
 
 import java.util.Scanner;
 
+/**
+ * The main class of the FUT Trading Bot application.
+ * This class contains the entry point of the application and handles the user interaction.
+ */
 public class Main {
     public static void main(String[] args) {
         var config = new Config();

@@ -6,6 +6,10 @@ import java.util.List;
 import java.sql.DriverManager;
 
 
+/**
+ * The DatabaseDriver class represents a driver for connecting to and interacting with a SQLite database.
+ * It provides methods for connecting to the database, creating tables, adding users, and retrieving players based on various criteria.
+ */
 public class DatabaseDriver {
     private Connection connection;
     private String sqliteFilename;

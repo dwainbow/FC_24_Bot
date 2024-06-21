@@ -5,6 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+/**
+ * The LoginPage class represents a page for logging into EA.
+ * It provides methods for setting up the WebDriver, logging in, authenticating, and logging into the WebApp.
+ */
 public class LoginPage {
     private String email;
     private String password;

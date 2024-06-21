@@ -3,11 +3,21 @@ package fc_24_bot_java2;
 import java.util.*;
 import java.io.*;
 
+/**
+ * The Config class represents the configuration settings for the FUT Trading Bot.
+ * It provides methods to load, save, and retrieve the configuration properties.
+ */
 public class Config {
     private static DatabaseDriver instance;
     private Properties configProps;
     private String configFilePath = "user.config";
 
+    /**
+     * Returns the singleton instance of the DatabaseDriver.
+     * If the instance does not exist, it creates a new one.
+     *
+     * @return The DatabaseDriver instance.
+     */
     public static DatabaseDriver getInstance(){
         if (instance == null){
             instance = new DatabaseDriver();
@@ -15,13 +25,18 @@ public class Config {
         return instance;
     }
 
+    /**
+     * Constructs a new Config object and loads the configuration properties.
+     */
     public Config() {
         configProps = new Properties();
         loadConfig();
     }
 
-
-
+    /**
+     * Loads the configuration properties from the config file.
+     * If the config file does not exist, it prompts the user for information and creates a new config file.
+     */
     private void loadConfig() {
         File configFile = new File(configFilePath);
         if (configFile.exists() && !configFile.isDirectory()) {
@@ -62,6 +77,9 @@ public class Config {
         
     }
 
+    /**
+     * Resets the configuration by prompting the user for information and saving the new configuration.
+     */
     public void resetConfig() {
         // Prompt user for information and reset configuration
         try (Scanner scanner = new Scanner(System.in)) {
@@ -84,6 +102,9 @@ public class Config {
         }
     }
 
+    /**
+     * Saves the configuration properties to the config file.
+     */
     private void saveConfig() {
         try (FileOutputStream fos = new FileOutputStream(configFilePath)) {
             configProps.store(fos, "User Configuration");
@@ -92,14 +113,29 @@ public class Config {
         }
     }
 
+    /**
+     * Returns the password from the configuration properties.
+     *
+     * @return The password.
+     */
     public String getPassword() {
         return configProps.getProperty("password");
     }
 
+    /**
+     * Returns the email from the configuration properties.
+     *
+     * @return The email.
+     */
     public String getEmail() {
         return configProps.getProperty("email");
     }
 
+    /**
+     * Returns the authentication token from the configuration properties.
+     *
+     * @return The authentication token.
+     */
     public String getToken() {
         return configProps.getProperty("token");
     }
